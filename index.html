@@ -61,30 +61,45 @@
     <header>
         <h1>Games Test Links</h1>
     </header>
+    <div class="radio-group">
+            <h3>Select a game</h3>
+            <label>
+                <input type="radio" name="options" value="pinpoint">
+                PinPoint
+            </label>
+            <label>
+                <input type="radio" name="options" value="crossclimb">
+                Crossclimb
+            </label>
+            <label>
+                <input type="radio" name="options" value="queens" checked>
+                Queens
+            </label>
+        </div>
 
     <nav>
-        <p class="text">
+        <p class="text" id="text-1">
           https://lnkd.in/queens
         </p>
-        <a href="https://lnkd.in/queens" target="_blank" class="big-button">Short link</a>
-        <p class="text">
+        <a id="link-1" href="https://lnkd.in/queens" target="_blank" class="big-button">Short link</a>
+        <p class="text" id="text-2">
           https://www.linkedin.com/games/queens
         </p>
-        <a href="https://www.linkedin.com/games/queens" target="_blank" class="big-button">Full link</a>
-        <p class="text">
+        <a id="link-2" href="https://www.linkedin.com/games/queens" target="_blank" class="big-button">Full link</a>
+        <p class="text" id="text-3">
           https://www.linkedin.com/games/queens/landing
         </p>
-        <a href="https://www.linkedin.com/games/queens/landing" target="_blank" class="big-button">Landing URL</a>
+        <a id="link-3" href="https://www.linkedin.com/games/queens/landing" target="_blank" class="big-button">Landing URL</a>
         
-        <p class="text">
+        <p class="text" id="text-4">
           https://www.linkedin.com/games/queens?isGameStart=true
         </p>
-        <a href="https://www.linkedin.com/games/queens?isGameStart=true" target="_blank" class="big-button">Auto Start</a>
+        <a id="link-4" href="https://www.linkedin.com/games/queens?isGameStart=true" target="_blank" class="big-button">Auto Start</a>
         
-        <p class="text">
+        <p class="text" id="text-5">
           https://www.linkedin.com/games/queens/landing?isGameStart=true
         </p>
-        <a href="https://www.linkedin.com/games/queens/landing?isGameStart=true" target="_blank" class="big-button">Landing + Auto Start</a>
+        <a id="link-5" href="https://www.linkedin.com/games/queens/landing?isGameStart=true" target="_blank" class="big-button">Landing + Auto Start</a>
         
         <p class="text">
           https://www.linkedin.com/games/
@@ -104,4 +119,38 @@
         <p>&copy; 2024 Your Name</p>
     </footer>
 </body>
+
+<script>
+        // Get all radio buttons
+        const radioButtons = document.querySelectorAll('input[name="options"]');
+        const resultDisplay = document.getElementById('selected-value');
+        const getUrls = function(gametype) {
+        	return [
+          	`https://lnkd.in/${gametype}`,
+            `https://www.linkedin.com/games/${gametype}`,
+            `https://www.linkedin.com/games/${gametype}/landing`,
+            `https://www.linkedin.com/games/${gametype}/?isGameStart=true`,
+            `https://www.linkedin.com/games/${gametype}/landing?isGameStart=true`,
+          ]
+        };
+
+        // Add event listener to each radio button
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', () => {
+                // Display the selected value
+                const gameType = radio.value;
+                
+                const urls = getUrls(gameType);
+                
+                
+                new Array(5).fill('').map((_,idx) => idx)
+                  .forEach((i) => {
+                    document.querySelector(`#text-${i + 1}`).innerHTML = urls[i];
+                    document.querySelector(`#link-${i + 1}`).href = urls[i];
+                  })
+                
+                
+            });
+        });
+    </script>
 </html>
